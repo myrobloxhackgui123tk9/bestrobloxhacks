@@ -1,0 +1,84 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local button = Instance.new("TextButton")
+local secretButton = Instance.new("TextButton")
+local UISizeConstraint = Instance.new("UISizeConstraint")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UIScale = Instance.new("UIScale")
+local x = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.278576821, 0, 0.258503407, 0)
+Frame.Size = UDim2.new(0, 206, 0, 162)
+Frame.Active = true
+Frame.Draggable = true
+
+button.Name = "button"
+button.Parent = Frame
+button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+button.Position = UDim2.new(0.066848278, 0, 0.103606895, 0)
+button.Size = UDim2.new(0, 95, 0, 35)
+button.Font = Enum.Font.SourceSans
+button.Text = "kill all player"
+button.TextColor3 = Color3.fromRGB(0, 0, 0)
+button.TextScaled = true
+button.TextSize = 14.000
+button.TextWrapped = true
+button.MouseButton1Click:Connect(function()
+	for i,v in pairs(game.Players:GetChildren()) do
+		if v.ClassName == 'Player' then
+			v.Character:BreakJoints()
+			wait(0.1)
+			button.Text = "working"-- Bypass god scripts
+		end
+	end
+end)
+
+secretButton.Name = "secretButton"
+secretButton.Parent = Frame
+secretButton.BackgroundColor3 = Color3.fromRGB(255, 255, 127)
+secretButton.Position = UDim2.new(0.0631067976, 0, 0.419753075, 0)
+secretButton.Size = UDim2.new(0, 95, 0, 31)
+secretButton.Font = Enum.Font.SourceSans
+secretButton.Text = "secret function"
+secretButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+secretButton.TextScaled = true
+secretButton.TextSize = 14.000
+secretButton.TextWrapped = true
+secretButton.MouseButton1Click:Connect(function()
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 10
+end)
+
+UISizeConstraint.Parent = secretButton
+
+UITextSizeConstraint.Parent = secretButton
+
+UIScale.Parent = secretButton
+
+x.Name = "x"
+x.Parent = Frame
+x.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+x.Position = UDim2.new(0.71359241, 0, 0.00617283955, 0)
+x.Size = UDim2.new(0, 58, 0, 50)
+x.Font = Enum.Font.SourceSansLight
+x.Text = "X"
+x.TextColor3 = Color3.fromRGB(0, 0, 0)
+x.TextScaled = true
+x.TextSize = 14.000
+x.TextWrapped = true
+x.MouseButton1Click:Connect(function()
+	if Frame.Visible == true then
+		Frame.Visible = false
+	end
+end)
